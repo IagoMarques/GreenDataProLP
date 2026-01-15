@@ -22,7 +22,7 @@ export const CallToAction = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center w-full max-w-sm sm:max-w-none mx-auto">
               <PrimaryButton className="w-full sm:w-auto px-8 md:px-10 py-4 md:py-5 !text-lg md:!text-xl !bg-white !text-[#003332] flex items-center justify-center gap-2 group">
-                Começar agora
+                Agendar agora
               </PrimaryButton>
               <button className="w-full sm:w-auto bg-transparent text-white border border-white/20 px-8 md:px-10 py-4 md:py-5 rounded-[12px] font-medium text-lg md:text-xl hover:bg-white/5 transition-all active:scale-95">
                 Falar com consultor

@@ -21,7 +21,7 @@ import ColetaSemFronteiras from './mockups/coletas-sem-fronteiras.png';
 export const mockupsImages = {
   'gestao-estrategica-integrada': GestaoEstrategicaIntegrada,
   
-  'processos-complexos': ColetaSemFronteiras,
+  'coletas-sem-fronteiras': ColetaSemFronteiras,
   
   /*'dependencia-operacional': AnaliseProfunda,*/
   

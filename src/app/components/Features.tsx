@@ -137,17 +137,17 @@ export const Features = () => {
     {
       title: "App Mobile Native",
       description: "Performance de ponta e experiência fluida em qualquer dispositivo, mesmo offline.",
-      image: "https://images.unsplash.com/photo-1762278804923-37f066f5e834?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGdyZWVuJTIwdGVjaCUyMGJhY2tncm91bmQlMjBuZXR3b3JrfGVufDF8fHx8MTc2ODQ4MTU1Mnww&ixlib=rb-4.1.0&q=80&w=1080"
+      image: getMockupsImage('gestao-estrategica-integrada')
     },
     {
       title: "Geoprocessamento",
       description: "Mapas de alta precisão e processamento de dados geográficos em tempo real.",
-      image: "https://images.unsplash.com/photo-1767477665600-98f3a7ee6c00?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxncmVlbiUyMGRhdGElMjB2aXN1YWxpemF0aW9uJTIwYWJzdHJhY3QlMjAzZHxlbnwxfHx8fDE3Njg0ODE1NTJ8MA"
+      image: getMockupsImage('gestao-estrategica-integrada')
     },
     {
       title: "Relatórios Pro",
       description: "Geração automatizada de documentos técnicos com total conformidade normativa.",
-      image: "https://images.unsplash.com/photo-1546728684-0c649e299b0b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdXN0YWluYWJsZSUyMHRlY2hub2xvZ3klMjBhYnN0cmFjdCUyMGdyZWVuJTIwbGlnaHR8ZW58MXx8fDE3Njg0ODE1NTUyfDA"
+      image: getMockupsImage('gestao-estrategica-integrada')
     }
   ];
 
@@ -183,7 +183,7 @@ export const Features = () => {
           <FeatureSection
             title="Análise profunda."
             description="Transforme milhões de pontos de dados em decisões claras com dashboards que respiram inteligência."
-            image="https://images.unsplash.com/photo-1736814759962-8a1f8edb2cee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbnZpcm9ubWVudGFsJTIwZGFzaGJvYXJkJTIwbW9iaWxlJTIwZ3JlZW4lMjBtb2NrdWAlMjBwb3J0cmFpdHxlbnwxfHx8fDE3Njg0MjA4NjJ8MA"
+            image={getMockupsImage('coletas-sem-fronteiras')}
           />
         </div>
 
