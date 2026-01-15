@@ -1,6 +1,5 @@
-import React from "react";
 import { motion } from "framer-motion";
-import { ChevronRight, Leaf, ArrowUpRight } from "lucide-react";
+import { Leaf, ArrowUpRight } from "lucide-react";
 import { PrimaryButton } from "./PrimaryButton";
 
 export const CallToAction = () => {
