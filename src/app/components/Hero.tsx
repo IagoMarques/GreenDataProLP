@@ -44,17 +44,29 @@ export const Hero = () => {
   
   // Image animation logic:
   const getInitialY = () => {
+    // Detect mobile screens (typically < 768px width)
+    const isMobileScreen = window.innerWidth < 768;
+
     if (isLargeScreen) return "45vh";
+    if (isMobileScreen) {
+      // Position higher on mobile to ensure visibility
+      return viewportHeight < 600 ? "40vh" : "35vh";
+    }
     if (viewportHeight < 600) return "70vh";
     return "60vh";
   };
 
   // Natural transition: The image reaches its peak at the end of the scroll
   // and then flows out naturally with the next section.
+  const getFinalY = () => {
+    const isMobileScreen = window.innerWidth < 768;
+    return isMobileScreen ? "-20vh" : "0vh";
+  };
+
   const imgY = useTransform(
-    scrollYProgress, 
-    [0, 1], 
-    [getInitialY(), "0vh"] 
+    scrollYProgress,
+    [0, 1],
+    [getInitialY(), getFinalY()]
   );
   
   const imgScale = useTransform(

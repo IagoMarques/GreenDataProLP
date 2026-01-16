@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { ShieldAlert, Database, Users, Eye, FileSearch, Globe } from "lucide-react";
 import { ImageWithFallback } from "../../app/components/figma/ImageWithFallback";
@@ -59,6 +59,20 @@ export const PainPoints = () => {
   const headerOpacity = useTransform(scrollYProgress, [0.1, 0.25], [0, 1]);
   const headerY = useTransform(scrollYProgress, [0.1, 0.25], [40, 0]);
 
+  // Detect mobile screen size
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 768); // md breakpoint
+    };
+
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
+
   // We keep track of which index is hovered in each row
   // Row 1: 0, 1, 2 | Row 2: 3, 4, 5
   const [hoveredRow1, setHoveredRow1] = useState<number>(0);
@@ -69,7 +83,7 @@ export const PainPoints = () => {
       <div className="relative flex flex-col md:flex-row gap-3 h-auto md:h-[312px] mb-3">
         {problems.slice(startIndex, endIndex + 1).map((problem, i) => {
           const actualIndex = startIndex + i;
-          const isHovered = hoveredIndex === actualIndex;
+          const isHovered = isMobile ? true : hoveredIndex === actualIndex;
           
           return (
             <motion.div

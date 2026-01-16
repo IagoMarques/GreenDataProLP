@@ -6,7 +6,6 @@ interface DecryptedTextProps {
   speed?: number;
   maxIterations?: number;
   sequential?: boolean;
-  revealDirection?: "start" | "end" | "center";
   useOriginalCharsOnly?: boolean;
   characters?: string;
   className?: string;
@@ -27,7 +26,6 @@ export const DecryptedText: React.FC<DecryptedTextProps> = ({
   speed = 50,
   maxIterations = 10,
   sequential = true,
-  revealDirection = "start",
   useOriginalCharsOnly = false,
   characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+",
   className = "",
