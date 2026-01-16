@@ -47,20 +47,20 @@ export const Hero = () => {
     // Detect mobile screens (typically < 768px width)
     const isMobileScreen = window.innerWidth < 768;
 
-    if (isLargeScreen) return "45vh";
+    if (isLargeScreen) return "60vh"; // Moved closer to content
     if (isMobileScreen) {
       // Position higher on mobile to ensure visibility
-      return viewportHeight < 600 ? "40vh" : "35vh";
+      return viewportHeight < 600 ? "15vh" : "25vh"; // Moved much closer
     }
-    if (viewportHeight < 600) return "70vh";
-    return "60vh";
+    if (viewportHeight < 600) return "50vh"; // Moved closer
+    return "60vh"; // Moved closer
   };
 
   // Natural transition: The image reaches its peak at the end of the scroll
   // and then flows out naturally with the next section.
   const getFinalY = () => {
     const isMobileScreen = window.innerWidth < 768;
-    return isMobileScreen ? "-20vh" : "0vh";
+    return isMobileScreen ? getInitialY() : "0vh"; // Mobile: no movement, stays in initial position
   };
 
   const imgY = useTransform(
@@ -70,22 +70,22 @@ export const Hero = () => {
   );
   
   const imgScale = useTransform(
-    scrollYProgress, 
-    [0, 1], 
+    scrollYProgress,
+    [0, 0.5], // Adjusted for shorter section - complete scaling earlier
     [0.8, maxScale]
   );
 
   return (
-    <section 
+    <section
       ref={containerRef}
-      className="relative h-[150vh] bg-background"
+      className="relative h-[150vh] bg-background mb-[-600px] md:mb-[-400px]"
     >
       <div className="sticky top-0 h-[100svh] flex flex-col items-center justify-center text-center px-4">
         
         {/* Text Layer */}
         <motion.div 
           style={{ opacity: textOpacity, y: textY }}
-          className="max-w-4xl mx-auto w-full absolute top-[12svh] lg:top-[15svh] z-20 pointer-events-none"
+          className="max-w-4xl mx-auto w-full absolute top-[20svh] lg:top-[15svh] z-20 pointer-events-none"
         >
           <div className="px-4">
             <h1 className="font-['Inter',sans-serif] font-bold text-3xl sm:text-5xl md:text-6xl lg:text-8xl text-foreground tracking-[-0.02em] leading-[1.1] mb-4 md:mb-6">
@@ -111,7 +111,7 @@ export const Hero = () => {
         {/* Image Layer - Optimized mapping to exit precisely as the scroll ends */}
         <motion.div 
           style={{ y: imgY, scale: imgScale }}
-          className="w-full max-w-[90vw] md:max-w-6xl px-4 z-10 will-change-transform flex justify-center items-center"
+          className="w-full max-w-[95vw] md:max-w-6xl px-4 z-10 will-change-transform flex justify-center items-center"
         >
           <div className="relative w-full rounded-2xl md:rounded-[32px] overflow-hidden shadow-[0_40px_80px_-15px_rgba(0,51,50,0.2)] border border-primary/5 bg-white">
             <div className="relative w-full aspect-[16/10] md:aspect-[16/9]">

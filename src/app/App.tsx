@@ -8,9 +8,9 @@ import "@/styles/fonts.css";
 
 export default function App() {
   return (
-    <div className="relative min-h-screen bg-background text-foreground transition-colors duration-300">
+    <div className="relative min-h-screen bg-background text-foreground transition-colors duration-300 overflow-x-hidden">
       <Navbar />
-      <main className="relative">
+      <main className="relative overflow-x-hidden">
         <Hero />
         <PainPoints />
         <Features />
