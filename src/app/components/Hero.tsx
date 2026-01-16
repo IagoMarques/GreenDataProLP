@@ -65,7 +65,7 @@ export const Hero = () => {
 
   const imgY = useTransform(
     scrollYProgress,
-    [0, 1],
+    [0, 3],
     [getInitialY(), getFinalY()]
   );
   
@@ -78,7 +78,7 @@ export const Hero = () => {
   return (
     <section
       ref={containerRef}
-      className="relative h-[150vh] bg-background mb-[-600px] md:mb-[-400px]"
+      className="relative h-[150vh] bg-background mb-[-620px] md:mb-[-200px]"
     >
       <div className="sticky top-0 h-[100svh] flex flex-col items-center justify-center text-center px-4">
         

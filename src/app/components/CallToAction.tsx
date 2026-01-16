@@ -5,18 +5,18 @@ import { PrimaryButton } from "./PrimaryButton";
 export const CallToAction = () => {
   return (
     <section id="contato" className="py-32 bg-background">
-      <div className="max-w-7xl mx-auto lg:px-12">
+      <div className="max-w-7xl mx-auto px-2 lg:px-12">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-[#003332] rounded-[56px] md:p-24 lg:px-32 text-center text-white relative overflow-hidden my-[0px]"
+          className="bg-[#003332] rounded-[12px] md:rounded-[56px] md:p-24 lg:px-32 text-center text-white relative overflow-hidden"
         >
-          <div className="relative z-10 max-w-3xl mx-auto px-4 md:px-0">
-            <h2 className="font-['Inter',sans-serif] font-bold text-3xl md:text-6xl lg:text-7xl mb-6 md:mb-10 tracking-tight leading-tight md:leading-[1.05]">
+          <div className="relative z-10 max-w-3xl mx-auto px-4 md:px-0 mt-[60px] md:mt-[0px] mb-[24px] md:mb-[0px]">
+            <h2 className="font-['Inter',sans-serif] font-bold text-3xl md:text-6xl lg:text-7xl mb-8 md:mb-10 tracking-tight leading-tight md:leading-[1.05] ">
               Eleve sua operação para o nível <span className="text-[#78EA4E]">Pro.</span>
             </h2>
-            <p className="font-['Inter',sans-serif] text-lg md:text-2xl text-white/70 mb-8 md:mb-12 leading-relaxed">
+            <p className="font-['Inter',sans-serif] text-lg md:text-2xl text-white/70 mb-26 md:mb-12 leading-relaxed">
               Junte-se à nova era do monitoramento ambiental inteligente.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center w-full max-w-sm sm:max-w-none mx-auto">

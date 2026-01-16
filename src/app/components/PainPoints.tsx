@@ -100,7 +100,7 @@ export const PainPoints = () => {
               }}
               className="relative rounded-[32px] overflow-hidden cursor-pointer flex flex-col min-h-[240px] md:min-h-0 border border-[#003332]/5  drop-shadow-xl group"
             >
-              <div className="relative z-20 p-1 md:p-3 h-full flex flex-col justify-between pointer-events-none">
+              <div className="relative z-20 p-4 md:p-3 h-full flex flex-col justify-between pointer-events-none">
                 {/* Top: Icon and Title */}
                 <div className="w-full">
                   <motion.div 
