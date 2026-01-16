@@ -1,6 +1,7 @@
 import React from "react";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
-import { Leaf, Menu, X, ArrowUpRight } from "lucide-react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
+import { getLogoImage } from "../../assets/images/logosImages";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -41,12 +42,16 @@ export const Navbar = () => {
         
         <div className="relative z-10 px-6 py-2.5 flex justify-between items-center">
           {/* Logo */}
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-[#003332] flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
-              <Leaf size={16} className="text-[#78EA4E]" />
+          <div className="flex items-center cursor-pointer">
+            <div className="w-8 h-8 rounded-full flex items-center justify-center transition-transform duration-500 scale-110 overflow-hidden">
+              <img
+                src={getLogoImage('logotipo-verde-lima')}
+                alt="GreenData Pro Logo"
+                className="w-5 h-5 object-contain"
+              />
             </div>
             <span className="font-bold text-[#003332] tracking-tight">
-              Greendata<span className="text-[#78EA4E]">Pro</span>
+              GreenData<span className="text-[#78EA4E]">Pro</span>
             </span>
           </div>
 
@@ -56,7 +61,6 @@ export const Navbar = () => {
               Greentech
               <ArrowUpRight size={12} className="group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5 transition-transform" />
             </a>
-            <a href="#solucao" className="text-[14px] text-[#003332]/70 hover:text-[#003332] transition-colors font-medium">Solução</a>
             <a href="#recursos" className="text-[14px] text-[#003332]/70 hover:text-[#003332] transition-colors font-medium">Recursos</a>
             <a href="#contato" className="text-[14px] text-[#003332]/70 hover:text-[#003332] transition-colors font-medium">Contato</a>
             <a 

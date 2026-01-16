@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useInView } from "framer-motion";
 
 interface DecryptedTextProps {
   text: string;
@@ -12,12 +12,15 @@ interface DecryptedTextProps {
   className?: string;
   parentClassName?: string;
   animateOn?: "view" | "hover";
+  delay?: number;
 }
 
 /**
  * DecryptedText Component
  * Animates text reveal by cycling through random characters.
  * Perfect for high-tech, premium landing pages.
+ *
+ * @param delay - Delay in milliseconds before starting the animation (default: 0)
  */
 export const DecryptedText: React.FC<DecryptedTextProps> = ({
   text,
@@ -30,6 +33,7 @@ export const DecryptedText: React.FC<DecryptedTextProps> = ({
   className = "",
   parentClassName = "",
   animateOn = "view",
+  delay = 0,
 }) => {
   const [displayText, setDisplayText] = useState(text);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -46,8 +50,10 @@ export const DecryptedText: React.FC<DecryptedTextProps> = ({
     if (isAnimating) return;
     setIsAnimating(true);
 
-    let iteration = 0;
-    const interval = setInterval(() => {
+    // Apply delay before starting animation
+    setTimeout(() => {
+      let iteration = 0;
+      const interval = setInterval(() => {
       setDisplayText(() =>
         text
           .split("")
@@ -79,6 +85,7 @@ export const DecryptedText: React.FC<DecryptedTextProps> = ({
 
       iteration += 1;
     }, speed);
+    }, delay);
   };
 
   return (

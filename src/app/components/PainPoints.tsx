@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { ShieldAlert, Database, Users, Eye, FileSearch, Globe } from "lucide-react";
 import { ImageWithFallback } from "../../app/components/figma/ImageWithFallback";
@@ -30,21 +30,21 @@ const problems = [
     icon: Eye,
     title: "Baixa visibilidade",
     description: "Dificuldade em acompanhar em tempo real o que acontece na operação do seu negócio.",
-    illustration: getPainPointImage('processos-complexos'),
+    illustration: getPainPointImage('dependencia-operacional'),
     color: "#F7FAF5"
   },
   {
     icon: FileSearch,
     title: "Dados desarticulados",
     description: "Informações que perdem o valor por não estarem integradas ao fluxo de trabalho operacional.",
-    illustration: getPainPointImage('dependencia-operacional'),
+    illustration: getPainPointImage('informacoes-espalhadas'),
     color: "#F7FAF5"
   },
   {
     icon: Globe,
     title: "Escalabilidade limitada",
     description: "Dificuldade em expandir operações para novas áreas mantendo o mesmo padrão de controle.",
-    illustration: getPainPointImage('informacoes-espalhadas'),
+    illustration: getPainPointImage('processos-complexos'),
     color: "#F7FAF5"
   }
 ];
@@ -62,11 +62,11 @@ export const PainPoints = () => {
   // We keep track of which index is hovered in each row
   // Row 1: 0, 1, 2 | Row 2: 3, 4, 5
   const [hoveredRow1, setHoveredRow1] = useState<number>(0);
-  const [hoveredRow2, setHoveredRow2] = useState<number>(3);
+  const [hoveredRow2, setHoveredRow2] = useState<number>(5);
 
   const renderRow = (startIndex: number, endIndex: number, hoveredIndex: number, setHovered: (idx: number) => void) => {
     return (
-      <div className="relative flex flex-col md:flex-row gap-3 h-auto md:h-[300px] mb-3">
+      <div className="relative flex flex-col md:flex-row gap-3 h-auto md:h-[312px] mb-3">
         {problems.slice(startIndex, endIndex + 1).map((problem, i) => {
           const actualIndex = startIndex + i;
           const isHovered = hoveredIndex === actualIndex;
@@ -157,13 +157,6 @@ export const PainPoints = () => {
                   </motion.div>
                 )}
               </AnimatePresence>
-
-              {/* Narrow state decorative line */}
-              {!isHovered && (
-                <div className="absolute inset-x-0 bottom-8 flex flex-col items-center opacity-20">
-                  <div className="w-px h-8 bg-white/40 rounded-full" />
-                </div>
-              )}
             </motion.div>
           );
         })}

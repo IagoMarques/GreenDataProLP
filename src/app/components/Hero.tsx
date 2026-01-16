@@ -1,9 +1,10 @@
-import React, { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { PrimaryButton } from "./PrimaryButton";
 import { DecryptedText } from "./DecryptedText";
+import { getMockupsImage } from "@/assets/images/mockupsImages";
 
 export const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -103,7 +104,7 @@ export const Hero = () => {
           <div className="relative w-full rounded-2xl md:rounded-[32px] overflow-hidden shadow-[0_40px_80px_-15px_rgba(0,51,50,0.2)] border border-primary/5 bg-white">
             <div className="relative w-full aspect-[16/10] md:aspect-[16/9]">
               <ImageWithFallback 
-                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71" 
+                src={getMockupsImage('gestao-estrategica-integrada')}
                 alt="Plataforma Greendata Pro"
                 className="w-full h-full object-cover"
               />
