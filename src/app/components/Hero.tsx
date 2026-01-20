@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ChevronRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { PrimaryButton } from "./PrimaryButton";
 import { DecryptedText } from "./DecryptedText";
@@ -97,9 +98,11 @@ export const Hero = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center font-['Inter',sans-serif] pointer-events-auto">
-              <PrimaryButton className="w-full sm:w-auto px-6 py-3 md:py-4 flex items-center justify-center gap-2 group text-base md:text-lg">
-                Agendar Demonstração
-              </PrimaryButton>
+              <Link to="/agendamento">
+                <PrimaryButton className="w-full sm:w-auto px-6 py-3 md:py-4 flex items-center justify-center gap-2 group text-base md:text-lg">
+                  Agendar Demonstração
+                </PrimaryButton>
+              </Link>
               <a href="#recursos" className="text-foreground font-medium hover:underline flex items-center gap-1 group text-base md:text-lg">
                 Conheça os recursos
                 <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />

@@ -1,6 +1,7 @@
 import React from "react";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowUpRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { getLogoImage } from "../../assets/images/logosImages";
 
 export const Navbar = () => {
@@ -42,7 +43,7 @@ export const Navbar = () => {
         
         <div className="relative z-10 px-6 py-2.5 flex justify-between items-center">
           {/* Logo */}
-          <div className="flex items-center cursor-pointer">
+          <Link to="/" className="flex items-center cursor-pointer">
             <div className="w-8 h-8 rounded-full flex items-center justify-center transition-transform duration-500 scale-110 overflow-hidden">
               <img
                 src={getLogoImage('logotipo-verde-lima')}
@@ -53,22 +54,22 @@ export const Navbar = () => {
             <span className="font-bold text-[#003332] tracking-tight">
               GreenData<span className="text-[#78EA4E]">Pro</span>
             </span>
-          </div>
+          </Link>
 
           {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-8">
-            <a href="https://greentech.com.br" className="flex items-center gap-1 text-[12px] uppercase tracking-wider text-[#003332]/40 hover:text-[#003332] transition-colors font-bold mr-4 group/link">
+            <a href="https://greentech-vision-main.vercel.app/" className="flex items-center gap-1 text-[12px] uppercase tracking-wider text-[#003332]/40 hover:text-[#003332] transition-colors font-bold mr-4 group/link">
               Greentech
               <ArrowUpRight size={12} className="group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5 transition-transform" />
             </a>
             <a href="#recursos" className="text-[14px] text-[#003332]/70 hover:text-[#003332] transition-colors font-medium">Recursos</a>
             <a href="#contato" className="text-[14px] text-[#003332]/70 hover:text-[#003332] transition-colors font-medium">Contato</a>
-            <a 
-              href="#demo" 
+            <Link
+              to="/agendamento"
               className="bg-[#003332] text-white px-6 py-2 rounded-full text-[14px] font-semibold hover:bg-[#78EA4E] hover:text-[#003332] transition-all active:scale-95 shadow-lg shadow-[#003332]/10"
             >
               Agendar Demo
-            </a>
+            </Link>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -97,9 +98,9 @@ export const Navbar = () => {
               <a href="#solucao" className="text-[#003332] text-lg font-semibold py-3 px-4 hover:bg-[#003332]/5 rounded-2xl transition-colors" onClick={() => setIsOpen(false)}>Solução</a>
               <a href="#recursos" className="text-[#003332] text-lg font-semibold py-3 px-4 hover:bg-[#003332]/5 rounded-2xl transition-colors" onClick={() => setIsOpen(false)}>Recursos</a>
               <a href="#contato" className="text-[#003332] text-lg font-semibold py-3 px-4 hover:bg-[#003332]/5 rounded-2xl transition-colors" onClick={() => setIsOpen(false)}>Contato</a>
-              <button className="w-full bg-[#003332] text-white py-4 rounded-2xl font-bold text-lg mt-4 hover:bg-[#78EA4E] hover:text-[#003332] transition-all">
+              <Link to="/agendamento" className="w-full bg-[#003332] text-white py-4 rounded-2xl font-bold text-lg mt-4 hover:bg-[#78EA4E] hover:text-[#003332] transition-all text-center block" onClick={() => setIsOpen(false)}>
                 Agendar Demo
-              </button>
+              </Link>
             </div>
           </motion.div>
         )}

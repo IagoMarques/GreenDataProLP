@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
-import { Leaf, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { PrimaryButton } from "./PrimaryButton";
+import { getLogoImage } from "../../assets/images/logosImages";
 
 export const CallToAction = () => {
   return (
@@ -20,9 +22,11 @@ export const CallToAction = () => {
               Junte-se à nova era do monitoramento ambiental inteligente.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center w-full max-w-sm sm:max-w-none mx-auto">
-              <PrimaryButton className="w-full sm:w-auto px-8 md:px-10 py-4 md:py-5 !text-lg md:!text-xl !bg-white !text-[#003332] flex items-center justify-center gap-2 group">
-                Agendar agora
-              </PrimaryButton>
+              <Link to="/agendamento">
+                <PrimaryButton className="w-full sm:w-auto px-8 md:px-10 py-4 md:py-5 !text-lg md:!text-xl !bg-white !text-[#003332] flex items-center justify-center gap-2 group">
+                  Agendar agora
+                </PrimaryButton>
+              </Link>
               <button className="w-full sm:w-auto bg-transparent text-white border border-white/20 px-8 md:px-10 py-4 md:py-5 rounded-[12px] font-medium text-lg md:text-xl hover:bg-white/5 transition-all active:scale-95">
                 Falar com consultor
               </button>
@@ -42,10 +46,16 @@ export const Footer = () => {
       <div className="max-w-6xl mx-auto px-6 lg:px-12 font-['Inter',sans-serif]">
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12 mb-16">
           <div className="col-span-2 lg:col-span-1">
-            <div className="flex items-center gap-2 mb-6">
-              <Leaf size={22} className="text-[#78EA4E]" />
+            <div className="flex items-center mb-6">
+            <div className="w-8 h-8 rounded-full flex items-center justify-center transition-transform duration-500 scale-110 overflow-hidden">
+              <img
+                src={getLogoImage('logotipo-verde-lima')}
+                alt="GreenData Pro Logo"
+                className="w-5 h-5 object-contain"
+              />
+            </div>
               <span className="font-bold text-xl tracking-tight text-[#003332]">
-                Greendata<span className="text-[#78EA4E]">Pro</span>
+                GreenData<span className="text-[#78EA4E]">Pro</span>
               </span>
             </div>
             <p className="text-[#003332]/60 text-sm leading-relaxed max-w-[200px] mb-4">

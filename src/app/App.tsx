@@ -1,22 +1,29 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
-import { Hero } from "./components/Hero";
-import { PainPoints } from "./components/PainPoints";
-import { Features } from "./components/Features";
-import { CallToAction, Footer } from "./components/CallToAction";
+import { Footer } from "./components/CallToAction";
+import { Home } from "./pages/Home";
+import { AgendamentoPage } from "./pages/AgendamentoPage";
 import "@/styles/fonts.css";
 
 export default function App() {
   return (
-    <div className="relative min-h-screen bg-background text-foreground transition-colors duration-300 overflow-x-hidden">
-      <Navbar />
-      <main className="relative overflow-x-hidden">
-        <Hero />
-        <PainPoints />
-        <Features />
-        <CallToAction />
-      </main>
-      <Footer />
-    </div>
+    <Router>
+      <div className="relative min-h-screen bg-background text-foreground transition-colors duration-300 overflow-x-hidden">
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Navbar />
+                <Home />
+                <Footer />
+              </>
+            }
+          />
+          <Route path="/agendamento" element={<AgendamentoPage />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
