@@ -1,14 +1,17 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { PrimaryButton } from "./PrimaryButton";
 import { getLogoImage } from "../../assets/images/logosImages";
 
 export const CallToAction = () => {
+  const navigate = useNavigate();
+
   return (
     <section id="contato" className="py-32 bg-background">
       <div className="max-w-7xl mx-auto px-2 lg:px-12">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -27,6 +30,12 @@ export const CallToAction = () => {
                   Agendar agora
                 </PrimaryButton>
               </Link>
+              <PrimaryButton
+                onClick={() => navigate("/agendamento")}
+                className="w-full sm:w-auto px-8 md:px-10 py-4 md:py-5 !text-lg md:!text-xl !bg-white !text-[#003332] flex items-center justify-center gap-2 group"
+              >
+                Agendar demo
+              </PrimaryButton>
               <button className="w-full sm:w-auto bg-transparent text-white border border-white/20 px-8 md:px-10 py-4 md:py-5 rounded-[12px] font-medium text-lg md:text-xl hover:bg-white/5 transition-all active:scale-95">
                 Falar com consultor
               </button>

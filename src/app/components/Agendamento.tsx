@@ -54,10 +54,28 @@ export const Agendamento = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Aqui você pode adicionar a lógica de envio do formulário
-    console.log("Form submitted:", { selectedDate, selectedHorarios, ...formData });
-    // Por enquanto, apenas um alerta
-    alert("Demonstração agendada com sucesso!");
+
+    // Dados do agendamento
+    const agendamentoData = {
+      id: Date.now().toString(),
+      selectedDate,
+      selectedHorarios,
+      ...formData,
+      timestamp: new Date().toISOString(),
+    };
+
+    // Salvar no localStorage
+    try {
+      const agendamentosExistentes = JSON.parse(localStorage.getItem('agendamentos') || '[]');
+      const novosAgendamentos = [...agendamentosExistentes, agendamentoData];
+      localStorage.setItem('agendamentos', JSON.stringify(novosAgendamentos));
+
+      console.log("Agendamento salvo:", agendamentoData);
+      alert("Demonstração agendada com sucesso! Os dados foram salvos localmente.");
+    } catch (error) {
+      console.error("Erro ao salvar agendamento:", error);
+      alert("Erro ao salvar agendamento. Tente novamente.");
+    }
   };
 
   return (
