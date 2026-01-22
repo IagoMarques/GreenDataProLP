@@ -4,7 +4,6 @@ import { ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { PrimaryButton } from "./PrimaryButton";
-import { DecryptedText } from "./DecryptedText";
 import { getMockupsImage } from "@/assets/images/mockupsImages";
 
 export const Hero = () => {
@@ -90,11 +89,11 @@ export const Hero = () => {
         >
           <div className="px-4">
             <h1 className="font-['Inter',sans-serif] font-bold text-3xl sm:text-5xl md:text-6xl lg:text-8xl text-foreground tracking-[-0.02em] leading-[1.1] mb-4 md:mb-6">
-              O futuro da gestão ambiental é <DecryptedText text="Pro." className="bg-gradient-to-r from-[#003332] to-[#78EA4E] bg-clip-text text-transparent" />
+              O futuro da gestão ambiental é <span className="bg-gradient-to-r from-[#003332] to-[#78EA4E] bg-clip-text text-transparent">Pro</span>
             </h1>
             
             <p className="font-['Inter',sans-serif] text-base md:text-xl lg:text-2xl text-foreground/70 mb-6 md:mb-10 leading-relaxed max-w-2xl mx-auto">
-              Uma única plataforma para planejar, coletar, analisar e gerar dados ambientais com precisão absoluta.
+            O GreenData Pro é uma plataforma completa para gestão e monitoramento de dados ambientais.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center font-['Inter',sans-serif] pointer-events-auto">

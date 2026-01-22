@@ -193,7 +193,7 @@ export const PainPoints = () => {
             O desafio atual
           </motion.span>
           <h2 className="font-['Inter',sans-serif] font-bold text-3xl md:text-5xl text-[#003332] tracking-tight mb-4 leading-tight">
-            A gestão ambiental não pode ter atritos.
+            A gestão ambiental em outro nível.
           </h2>
           <p className="font-['Inter',sans-serif] text-lg text-[#003332]/60 max-w-2xl mx-auto leading-relaxed">
             Eliminamos os obstáculos que impedem sua operação de ser verdadeiramente eficiente e baseada em dados reais.

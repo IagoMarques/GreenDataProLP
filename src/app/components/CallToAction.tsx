@@ -70,7 +70,7 @@ export const Footer = () => {
             <p className="text-[#003332]/60 text-sm leading-relaxed max-w-[200px] mb-4">
               O padrão Pro para operações ambientais de alta complexidade.
             </p>
-            <a href="https://greentech.com.br" className="inline-flex items-center gap-1.5 text-xs font-bold text-[#78EA4E] hover:text-[#003332] transition-colors group/back">
+            <a href="https://greentech-vision-main.vercel.app/" className="inline-flex items-center gap-1.5 text-xs font-bold text-[#78EA4E] hover:text-[#003332] transition-colors group/back">
               Voltar para Greentech
               <ArrowUpRight size={14} className="group-hover/back:-translate-y-0.5 group-hover/back:translate-x-0.5 transition-transform" />
             </a>
