@@ -3,11 +3,13 @@ import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { getLogoImage } from "../../assets/images/logosImages";
+import { useSmoothScroll } from "../hooks/useSmoothScroll";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [visible, setVisible] = React.useState(true);
   const { scrollY } = useScroll();
+  const { scrollToElement } = useSmoothScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() ?? 0;
@@ -62,8 +64,8 @@ export const Navbar = () => {
               Greentech
               <ArrowUpRight size={12} className="group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5 transition-transform" />
             </a>
-            <a href="#recursos" className="text-[14px] text-[#003332]/70 hover:text-[#003332] transition-colors font-medium">Recursos</a>
-            <a href="#contato" className="text-[14px] text-[#003332]/70 hover:text-[#003332] transition-colors font-medium">Contato</a>
+            <button onClick={() => scrollToElement('#recursos')} className="text-[14px] text-[#003332]/70 hover:text-[#003332] transition-colors font-medium">Recursos</button>
+            <button onClick={() => scrollToElement('#contato')} className="text-[14px] text-[#003332]/70 hover:text-[#003332] transition-colors font-medium">Contato</button>
             <Link
               to="/agendamento"
               className="bg-[#003332] text-white px-6 py-2 rounded-full text-[14px] font-semibold hover:bg-[#78EA4E] hover:text-[#003332] transition-all active:scale-95 shadow-lg shadow-[#003332]/10"
@@ -95,9 +97,9 @@ export const Navbar = () => {
           >
             <div className="absolute inset-0 bg-white/80 backdrop-blur-3xl" />
             <div className="relative z-10 p-6 flex flex-col gap-2">
-              <a href="#solucao" className="text-[#003332] text-lg font-semibold py-3 px-4 hover:bg-[#003332]/5 rounded-2xl transition-colors" onClick={() => setIsOpen(false)}>Solução</a>
-              <a href="#recursos" className="text-[#003332] text-lg font-semibold py-3 px-4 hover:bg-[#003332]/5 rounded-2xl transition-colors" onClick={() => setIsOpen(false)}>Recursos</a>
-              <a href="#contato" className="text-[#003332] text-lg font-semibold py-3 px-4 hover:bg-[#003332]/5 rounded-2xl transition-colors" onClick={() => setIsOpen(false)}>Contato</a>
+              <button onClick={() => { scrollToElement('#solucao'); setIsOpen(false); }} className="text-[#003332] text-lg font-semibold py-3 px-4 hover:bg-[#003332]/5 rounded-2xl transition-colors text-left">Solução</button>
+              <button onClick={() => { scrollToElement('#recursos'); setIsOpen(false); }} className="text-[#003332] text-lg font-semibold py-3 px-4 hover:bg-[#003332]/5 rounded-2xl transition-colors text-left">Recursos</button>
+              <button onClick={() => { scrollToElement('#contato'); setIsOpen(false); }} className="text-[#003332] text-lg font-semibold py-3 px-4 hover:bg-[#003332]/5 rounded-2xl transition-colors text-left">Contato</button>
               <Link to="/agendamento" className="w-full bg-[#003332] text-white py-4 rounded-2xl font-bold text-lg mt-4 hover:bg-[#78EA4E] hover:text-[#003332] transition-all text-center block" onClick={() => setIsOpen(false)}>
                 Agendar Demo
               </Link>

@@ -5,11 +5,13 @@ import { Link } from "react-router-dom";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { PrimaryButton } from "./PrimaryButton";
 import { getMockupsImage } from "@/assets/images/mockupsImages";
+import { useSmoothScroll } from "../hooks/useSmoothScroll";
 
 export const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [viewportHeight, setViewportHeight] = useState(0);
   const [isLargeScreen, setIsLargeScreen] = useState(false);
+  const { scrollToElement } = useSmoothScroll();
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -102,10 +104,10 @@ export const Hero = () => {
                   Agendar Demonstração
                 </PrimaryButton>
               </Link>
-              <a href="#recursos" className="text-foreground font-medium hover:underline flex items-center gap-1 group text-base md:text-lg">
+              <button onClick={() => scrollToElement('#recursos')} className="text-foreground font-medium hover:underline flex items-center gap-1 group text-base md:text-lg">
                 Conheça os recursos
                 <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
-              </a>
+              </button>
             </div>
           </div>
         </motion.div>
