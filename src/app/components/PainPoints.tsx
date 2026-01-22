@@ -7,36 +7,36 @@ import { getPainPointImage } from "../../assets/images/painPointsImages.js";
 const problems = [
   {
     icon: Database,
-    title: "Informações espalhadas",
-    description: "Fragmentação de dados dificulta a consolidação estratégica para tomadas de decisão rápidas.",
+    title: "Pensado para simplificar",
+    description: "O GreenData absorve a complexidade da operação de forma intuitiva para que cada usuário interaja apenas com o que realmente precisa.",
     illustration: getPainPointImage('informacoes-espalhadas'),
     color: "#F7FAF5"
   },
   {
     icon: ShieldAlert,
-    title: "Processos complexos",
-    description: "Sistemas que não acompanham a dinâmica do campo, gerando gargalos operacionais constantes.",
+    title: "Controle claro, dados visíveis",
+    description: "Gerencie dados sem perder noção do processo, tenha controle e personalização",
     illustration: getPainPointImage('processos-complexos'),
     color: "#F7FAF5"
   },
   {
     icon: Users,
-    title: "Dependência operacional",
-    description: "Silos de conhecimento que prejudicam a continuidade do monitoramento e a segurança.",
+    title: "Base sólida, uso contínuo",
+    description: "O GreenData permite estruturar a operação uma vez e operar com estabilidade, sem precisar reconstruir processos a cada nova demanda.",
     illustration: getPainPointImage('dependencia-operacional'),
     color: "#F7FAF5"
   },
   {
     icon: Eye,
-    title: "Baixa visibilidade",
-    description: "Dificuldade em acompanhar em tempo real o que acontece na operação do seu negócio.",
+    title: "Visão operacional completa",
+    description: "Dados apresentados de forma clara e visual permitem planejar, acompanhar a performance da equipe e controlar cada projeto a partir de uma única tela, sem perder informações críticas.",
     illustration: getPainPointImage('dependencia-operacional'),
     color: "#F7FAF5"
   },
   {
     icon: FileSearch,
-    title: "Dados desarticulados",
-    description: "Informações que perdem o valor por não estarem integradas ao fluxo de trabalho operacional.",
+    title: "Preparado para exceções",
+    description: "O sistema foi desenhado para lidar com necessidades específicas e variações operacionais sem comprometer simplicidade ou controle.",
     illustration: getPainPointImage('informacoes-espalhadas'),
     color: "#F7FAF5"
   },

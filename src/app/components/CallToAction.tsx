@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { PrimaryButton } from "./PrimaryButton";
 import { getLogoImage } from "../../assets/images/logosImages";
@@ -25,11 +24,7 @@ export const CallToAction = () => {
               Junte-se à nova era do monitoramento ambiental inteligente.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center w-full max-w-sm sm:max-w-none mx-auto">
-              <Link to="/agendamento">
-                <PrimaryButton className="w-full sm:w-auto px-8 md:px-10 py-4 md:py-5 !text-lg md:!text-xl !bg-white !text-[#003332] flex items-center justify-center gap-2 group">
-                  Agendar agora
-                </PrimaryButton>
-              </Link>
+              
               <PrimaryButton
                 onClick={() => navigate("/agendamento")}
                 className="w-full sm:w-auto px-8 md:px-10 py-4 md:py-5 !text-lg md:!text-xl !bg-white !text-[#003332] flex items-center justify-center gap-2 group"
