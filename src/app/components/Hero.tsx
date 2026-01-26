@@ -11,7 +11,12 @@ export const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [viewportHeight, setViewportHeight] = useState(0);
   const [isLargeScreen, setIsLargeScreen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
   const { scrollToElement } = useSmoothScroll();
+
+  // Array of images to rotate
+  const heroImages = ['dashboard', 'relatorio', 'localizacao'] as const;
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -23,11 +28,53 @@ export const Hero = () => {
       setViewportHeight(window.innerHeight);
       setIsLargeScreen(window.innerWidth >= 1536); // 2xl breakpoint
     };
-    
+
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  // Preload images for smoother transitions
+  useEffect(() => {
+    const preloadImages = async () => {
+      const loadPromises = heroImages.map(imageKey => {
+        return new Promise<void>((resolve) => {
+          const img = new Image();
+          img.onload = () => {
+            setLoadedImages(prev => new Set(prev).add(imageKey));
+            resolve();
+          };
+          img.onerror = () => resolve(); // Continue even if one fails
+          img.src = getMockupsImage(imageKey);
+          // Force cache by setting crossOrigin
+          img.crossOrigin = 'anonymous';
+        });
+      });
+
+      await Promise.all(loadPromises);
+
+      // Add a small delay to ensure images are fully cached
+      setTimeout(() => {
+        console.log('All hero images preloaded successfully');
+      }, 500);
+    };
+
+    preloadImages();
+  }, [heroImages]);
+
+  // Auto-rotate images (only after all images are loaded)
+  useEffect(() => {
+    // Only start rotation when all images are loaded
+    if (loadedImages.size !== heroImages.length) {
+      return;
+    }
+
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
+    }, 4000); // Change image every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [heroImages.length, loadedImages.size]);
 
   // Responsive scale calculation
   const getDynamicMaxScale = () => {
@@ -119,11 +166,23 @@ export const Hero = () => {
         >
           <div className="relative w-full rounded-2xl md:rounded-[32px] overflow-hidden shadow-[0_40px_80px_-15px_rgba(0,51,50,0.2)] border border-primary/5 bg-white">
             <div className="relative w-full aspect-[16/10] md:aspect-[16/9]">
-              <ImageWithFallback 
-                src={getMockupsImage('gestao-estrategica-integrada')}
-                alt="Plataforma Greendata Pro"
-                className="w-full h-full object-cover"
-              />
+              {/* Preload all images invisibly */}
+              {heroImages.map((imageKey, index) => (
+                <ImageWithFallback
+                  key={imageKey}
+                  src={getMockupsImage(imageKey)}
+                  alt={`Plataforma Greendata Pro - ${imageKey}`}
+                  className={`w-full h-full object-cover absolute inset-0 transition-opacity duration-500 ease-in-out ${
+                    index === currentImageIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
+                  }`}
+                  style={{
+                    imageRendering: 'auto',
+                    backfaceVisibility: 'hidden',
+                    transform: 'translateZ(0)' // Force hardware acceleration
+                  }}
+                  loading="eager"
+                />
+              ))}
             </div>
             <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/5 to-transparent pointer-events-none" />
           </div>

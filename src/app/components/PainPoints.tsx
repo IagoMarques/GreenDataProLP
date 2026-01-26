@@ -1,49 +1,49 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
-import { ShieldAlert, Database, Users, Eye, FileSearch, Globe } from "lucide-react";
+import { GitCommitHorizontal, BrainCircuit, HandPlatter, Glasses, Grid2x2Plus, Globe } from "lucide-react";
 import { ImageWithFallback } from "../../app/components/figma/ImageWithFallback";
 import { getPainPointImage } from "../../assets/images/painPointsImages.js";
 
 const problems = [
   {
-    icon: Database,
-    title: "Pensado para simplificar",
-    description: "O GreenData absorve a complexidade da operação de forma intuitiva para que cada usuário interaja apenas com o que realmente precisa.",
+    icon: BrainCircuit,
+    title: "Complexidade absorvida pelo sistema",
+    description: "O GreenData assume a complexidade técnica da operação para que o usuário foque na execução e na decisão, sem lidar com estruturas, regras ou configurações desnecessárias.",
     illustration: getPainPointImage('informacoes-espalhadas'),
     color: "#F7FAF5"
   },
   {
-    icon: ShieldAlert,
-    title: "Controle claro, dados visíveis",
-    description: "Gerencie dados sem perder noção do processo, tenha controle e personalização",
+    icon: GitCommitHorizontal,
+    title: "Fluxo operacional contínuo",
+    description: "Projetos, locais, coletas e dados fazem parte de um único fluxo encadeado, garantindo contexto, consistência e continuidade em toda a operação.",
     illustration: getPainPointImage('processos-complexos'),
     color: "#F7FAF5"
   },
   {
-    icon: Users,
-    title: "Base sólida, uso contínuo",
-    description: "O GreenData permite estruturar a operação uma vez e operar com estabilidade, sem precisar reconstruir processos a cada nova demanda.",
+    icon: HandPlatter,
+    title: "Autonomia sem dependência técnica",
+    description: "A operação evolui dentro do sistema sem exigir suporte técnico constante para ajustes que fazem parte da rotina do negócio.",
     illustration: getPainPointImage('dependencia-operacional'),
     color: "#F7FAF5"
   },
   {
-    icon: Eye,
-    title: "Visão operacional completa",
-    description: "Dados apresentados de forma clara e visual permitem planejar, acompanhar a performance da equipe e controlar cada projeto a partir de uma única tela, sem perder informações críticas.",
+    icon: Glasses,
+    title: "Rastreabilidade estrutural dos dados",
+    description: "Cada dado nasce com origem, contexto e histórico definidos, garantindo confiabilidade técnica para auditorias, análises e decisões críticas.",
     illustration: getPainPointImage('dependencia-operacional'),
     color: "#F7FAF5"
   },
   {
-    icon: FileSearch,
-    title: "Preparado para exceções",
-    description: "O sistema foi desenhado para lidar com necessidades específicas e variações operacionais sem comprometer simplicidade ou controle.",
+    icon: Grid2x2Plus,
+    title: "Escala por arquitetura",
+    description: "O crescimento da operação acontece sobre a mesma base estrutural, mantendo padrão, consistência e confiabilidade dos dados ao longo do tempo.",
     illustration: getPainPointImage('informacoes-espalhadas'),
     color: "#F7FAF5"
   },
   {
     icon: Globe,
-    title: "Escalabilidade limitada",
-    description: "Dificuldade em expandir operações para novas áreas mantendo o mesmo padrão de controle.",
+    title: "Visão operacional unificada",
+    description: "A operação pode ser planejada, acompanhada e controlada a partir de uma única visão clara, sem perda de informações relevantes.",
     illustration: getPainPointImage('processos-complexos'),
     color: "#F7FAF5"
   }

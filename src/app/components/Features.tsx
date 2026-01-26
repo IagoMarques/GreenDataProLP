@@ -3,14 +3,29 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ImageWithFallback } from "../../app/components/figma/ImageWithFallback";
 import { getMockupsImage } from "../../assets/images/mockupsImages.js";
 
+// Video component for card content
+const VideoCard = ({ src, alt, className }: { src: string; alt: string; className?: string }) => (
+  <video
+    src={src}
+    className={className}
+    autoPlay
+    muted
+    loop
+    playsInline
+    preload="metadata"
+    aria-label={alt}
+  />
+);
+
 interface FeatureProps {
   title: string;
   description: string;
   image: string;
   reverse?: boolean;
+  isVideo?: boolean;
 }
 
-const DesktopFeatureSection = ({ title, description, image }: Omit<FeatureProps, "reverse">) => {
+const DesktopFeatureSection = ({ title, description, image, isVideo }: Omit<FeatureProps, "reverse"> & { isVideo?: boolean }) => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -40,23 +55,23 @@ const DesktopFeatureSection = ({ title, description, image }: Omit<FeatureProps,
         className="w-full max-w-6xl mx-auto"
       >
         <div className="relative rounded-[24px] md:rounded-[32px] overflow-hidden bg-[#001A1A] p-1 md:p-1.5 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.4),0_0_0_1px_rgba(255,255,255,0.05)] border border-white/5">
-          {/* Top Bar / Header simulation - Hidden/Simplified on small mobile */}
-          <div className="flex items-center gap-2 px-4 md:px-6 py-3 md:py-4 border-b border-white/5">
-            <div className="flex gap-1.5">
-              <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#78EA4E]/30" />
-              <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-white/10" />
-              <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-white/10" />
-            </div>
-            <div className="mx-auto w-32 md:w-48 h-4 md:h-6 rounded-lg bg-white/5" />
-          </div>
-          
+
+
           {/* Main Content Area */}
-          <div className="relative aspect-[4/3] md:aspect-[16/9] bg-white overflow-hidden rounded-b-[20px] md:rounded-b-[26px]">
-            <ImageWithFallback
-              src={image}
-              alt={title}
-              className="w-full h-full object-cover"
-            />
+          <div className="relative aspect-[16/9] bg-white overflow-hidden rounded-[20px] md:rounded-[28px]">
+            {isVideo ? (
+              <VideoCard
+                src={image}
+                alt={title}
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <ImageWithFallback
+                src={image}
+                alt={title}
+                className="w-full h-full object-cover"
+              />
+            )}
             {/* Gradient overlay for depth */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-transparent pointer-events-none" />
             <div className="absolute inset-0 ring-1 ring-inset ring-black/5 pointer-events-none" />
@@ -67,7 +82,7 @@ const DesktopFeatureSection = ({ title, description, image }: Omit<FeatureProps,
   );
 };
 
-const FeatureSection = ({ title, description, image, reverse }: FeatureProps) => {
+const FeatureSection = ({ title, description, image, reverse, isVideo }: FeatureProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -99,11 +114,19 @@ const FeatureSection = ({ title, description, image, reverse }: FeatureProps) =>
           <div className="relative mx-auto w-full max-w-[280px] md:max-w-[320px] aspect-[9/19.5] bg-[#001A1A] rounded-[3rem] border-[10px] border-[#001A1A] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] overflow-hidden ring-1 ring-white/10 ring-inset">
             {/* Screen Content */}
             <div className="absolute inset-0 bg-white">
-              <ImageWithFallback
-                src={image}
-                alt={title}
-                className="w-full h-full object-cover"
-              />
+              {isVideo ? (
+                <VideoCard
+                  src={image}
+                  alt={title}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <ImageWithFallback
+                  src={image}
+                  alt={title}
+                  className="w-full h-full object-cover"
+                />
+              )}
             </div>
             
             {/* Notch / Dynamic Island Effect */}
@@ -135,19 +158,22 @@ export const Features = () => {
 
   const cards = [
     {
-      title: "App Mobile Native",
-      description: "Performance de ponta e experiência fluida em qualquer dispositivo, mesmo offline.",
-      image: getMockupsImage('gestao-estrategica-integrada')
+      title: "Ambiente laboratorial integrado",
+      description: "O ambiente do laboratório já vem estruturado e conectado à operação e ao cliente, permitindo analisar, registrar e devolver resultados sem etapas paralelas ou controles externos.",
+      content: getMockupsImage('gestao-estrategica-integrada'),
+      isVideo: false
     },
     {
-      title: "Geoprocessamento",
-      description: "Mapas de alta precisão e processamento de dados geográficos em tempo real.",
-      image: getMockupsImage('gestao-estrategica-integrada')
+      title: "Relatórios e gráficos personalizáveis",
+      description: "Crie relatórios e visualizações a partir de qualquer dado registrado no sistema. A visualização se adapta ao que você precisa analisar, do jeito certo para cada decisão.",
+      content: getMockupsImage('gestao-estrategica-integrada'),
+      isVideo: false
     },
     {
       title: "Relatórios Pro",
       description: "Geração automatizada de documentos técnicos com total conformidade normativa.",
-      image: getMockupsImage('gestao-estrategica-integrada')
+      content: getMockupsImage('gestao-estrategica-integrada'),
+      isVideo: false
     }
   ];
 
@@ -168,22 +194,25 @@ export const Features = () => {
 
         <div className="max-w-6xl mx-auto">
           <DesktopFeatureSection
-            title="Gestão estratégica integrada"
+            title="Gestão de projetos e localizações"
             description="Centralize toda a sua operação em uma interface inteligente que conecta projetos, locais e dados em tempo real."
-            image={getMockupsImage('gestao-estrategica-integrada')}
+            image="/videos/projects-locs.mkv"
+            isVideo={true}
           />
 
           <FeatureSection
             title="Coleta sem fronteiras."
             description="O app de campo funciona perfeitamente offline, garantindo que nenhum dado seja perdido, onde quer que você esteja."
-            image={getMockupsImage('coletas-sem-fronteiras')}
+            image="/videos/offline.mp4"
+            isVideo={true}
             reverse
           />
 
           <FeatureSection
-            title="Análise profunda."
-            description="Transforme milhões de pontos de dados em decisões claras com dashboards que respiram inteligência."
-            image={getMockupsImage('coletas-sem-fronteiras')}
+            title="Documentações Automatizadas."
+            description="Os dados coletados alimentam automaticamente o COC e outros documentos operacionais. Nada precisa ser refeito, digitado novamente ou conferido manualmente."
+            image="/videos/chain.mp4"
+            isVideo={true}
           />
         </div>
 
@@ -195,11 +224,19 @@ export const Features = () => {
             {cards.map((card, index) => (
               <div key={index} className="rounded-[32px] p-3 flex flex-col border border-white/5 overflow-hidden group">
                 <div className="aspect-[4/3] w-full rounded-[22px] overflow-hidden mb-8">
-                  <ImageWithFallback 
-                    src={card.image} 
-                    alt={card.title} 
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
-                  />
+                  {card.isVideo ? (
+                    <VideoCard
+                      src={card.content}
+                      alt={card.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                  ) : (
+                    <ImageWithFallback
+                      src={card.content}
+                      alt={card.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                  )}
                 </div>
                 
                 <div className="px-6 pb-8 text-left">
