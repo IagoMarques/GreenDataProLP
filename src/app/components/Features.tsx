@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ImageWithFallback } from "../../app/components/figma/ImageWithFallback";
 import { getMockupsImage } from "../../assets/images/mockupsImages.js";
+import { getGraficosImage } from "@/assets/images/featuresImage.js";
 
 // Video component for card content
 const VideoCard = ({ src, alt, className }: { src: string; alt: string; className?: string }) => (
@@ -166,7 +167,7 @@ export const Features = () => {
     {
       title: "Relatórios e gráficos personalizáveis",
       description: "Crie relatórios e visualizações a partir de qualquer dado registrado no sistema. A visualização se adapta ao que você precisa analisar, do jeito certo para cada decisão.",
-      content: getMockupsImage('gestao-estrategica-integrada'),
+      content: getGraficosImage('graficos-personalizaveis'),
       isVideo: false
     },
     {
