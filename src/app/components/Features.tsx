@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ImageWithFallback } from "../../app/components/figma/ImageWithFallback";
 import { getMockupsImage } from "../../assets/images/mockupsImages.js";
-import { getGraficosImage } from "@/assets/images/featuresImage.js";
+import { getFeatureImage } from "@/assets/images/featuresImage.js";
 
 // Video component for card content
 const VideoCard = ({ src, alt, className }: { src: string; alt: string; className?: string }) => (
@@ -161,19 +161,19 @@ export const Features = () => {
     {
       title: "Ambiente laboratorial integrado",
       description: "O ambiente do laboratório já vem estruturado e conectado à operação e ao cliente, permitindo analisar, registrar e devolver resultados sem etapas paralelas ou controles externos.",
-      content: getMockupsImage('gestao-estrategica-integrada'),
+      content: getFeatureImage('ambiente-lab'),
       isVideo: false
     },
     {
       title: "Relatórios e gráficos personalizáveis",
       description: "Crie relatórios e visualizações a partir de qualquer dado registrado no sistema. A visualização se adapta ao que você precisa analisar, do jeito certo para cada decisão.",
-      content: getGraficosImage('graficos-personalizaveis'),
+      content: getFeatureImage('graficos-personalizaveis'),
       isVideo: false
     },
     {
-      title: "Relatórios Pro",
-      description: "Geração automatizada de documentos técnicos com total conformidade normativa.",
-      content: getMockupsImage('gestao-estrategica-integrada'),
+      title: "Operação sincronizada em tempo real",
+      description: "Os status dos pontos de monitoramento se atualizam conforme a ação acontece em campo. Com conexão, o escritório acompanha a operação em tempo real, com total visibilidade.",
+      content: getFeatureImage('live-status'),
       isVideo: false
     }
   ];

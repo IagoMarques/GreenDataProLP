@@ -37,14 +37,14 @@ const problems = [
     icon: Grid2x2Plus,
     title: "Escala por arquitetura",
     description: "O crescimento da operação acontece sobre a mesma base estrutural, mantendo padrão, consistência e confiabilidade dos dados ao longo do tempo.",
-    illustration: getPainPointImage('informacoes-espalhadas'),
+    illustration: getPainPointImage('escala-por-arquitetura'),
     color: "#F7FAF5"
   },
   {
     icon: Globe,
     title: "Visão operacional unificada",
     description: "A operação pode ser planejada, acompanhada e controlada a partir de uma única visão clara, sem perda de informações relevantes.",
-    illustration: getPainPointImage('processos-complexos'),
+    illustration: getPainPointImage('visao-operacional-unificada'),
     color: "#F7FAF5"
   }
 ];
@@ -159,7 +159,7 @@ export const PainPoints = () => {
                       damping: 18,
                       delay: 0.05
                     }}
-                    className="absolute bottom-[-20%] right-[-28%] w-[90%] h-[90%] z-10 pointer-events-none"
+                    className="absolute bottom-[-10%] right-[-28%] w-[90%] h-[90%] z-10 pointer-events-none"
                   >
                     <div className="relative w-full h-full">
                       <ImageWithFallback 

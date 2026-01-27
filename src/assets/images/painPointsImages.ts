@@ -12,6 +12,8 @@ import dependenciaOperacional from './pain-points/dependencia-operacional.png';
 // import baixaVisibilidade from './pain-points/baixa-visibilidade.jpg';
 // import dadosDesarticulados from './pain-points/dados-desarticulados.jpg';
 // import escalabilidadeLimitada from './pain-points/escalabilidade-limitada.jpg';
+import visaoOperacionalUnificada from './pain-points/visao-operacional-unificada.png';
+import escalaPorArquitetura from './pain-points/escala-por-arquitetura.png';
 
 /**
  * Mapeamento das imagens dos pain points
@@ -24,6 +26,10 @@ export const painPointsImages = {
   'processos-complexos': processosComplexos,
   
   'dependencia-operacional': dependenciaOperacional,
+
+  'visao-operacional-unificada': visaoOperacionalUnificada,
+
+  'escala-por-arquitetura': escalaPorArquitetura,
   
   'baixa-visibilidade': 
     'https://images.unsplash.com/photo-1567039411936-44e1b970873b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHwzZCUyMGlzb21ldHJpYyUyMGRhdGElMjBhbmFseXRpY3MlMjBjaGFydCUyMGdsYXNzfGVufDF8fHx8MTc2ODQwMzY4MHww',
