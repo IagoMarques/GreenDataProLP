@@ -64,8 +64,8 @@ export const Navbar = () => {
               Greentech
               <ArrowUpRight size={12} className="group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5 transition-transform" />
             </a>
+            <button onClick={() => scrollToElement('#diferenciais')} className="text-[14px] text-[#003332]/70 hover:text-[#003332] transition-colors font-medium">Diferenciais</button>
             <button onClick={() => scrollToElement('#recursos')} className="text-[14px] text-[#003332]/70 hover:text-[#003332] transition-colors font-medium">Recursos</button>
-            <button onClick={() => scrollToElement('#contato')} className="text-[14px] text-[#003332]/70 hover:text-[#003332] transition-colors font-medium">Contato</button>
             <Link
               to="/agendamento"
               className="bg-[#003332] text-white px-6 py-2 rounded-full text-[14px] font-semibold hover:bg-[#78EA4E] hover:text-[#003332] transition-all active:scale-95 shadow-lg shadow-[#003332]/10"

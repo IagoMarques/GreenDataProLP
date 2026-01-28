@@ -29,11 +29,13 @@ export const CallToAction = () => {
                 onClick={() => navigate("/agendamento")}
                 className="w-full sm:w-auto px-8 md:px-10 py-4 md:py-5 !text-lg md:!text-xl !bg-white !text-[#003332] flex items-center justify-center gap-2 group"
               >
-                Agendar demo
+                Agendar demonstração
               </PrimaryButton>
+              {/*
               <button className="w-full sm:w-auto bg-transparent text-white border border-white/20 px-8 md:px-10 py-4 md:py-5 rounded-[12px] font-medium text-lg md:text-xl hover:bg-white/5 transition-all active:scale-95">
                 Falar com consultor
               </button>
+              */}
             </div>
           </div>
           {/* Subtle gradient light */}
@@ -48,7 +50,7 @@ export const Footer = () => {
   return (
     <footer className="bg-background border-t border-primary/5 py-16">
       <div className="max-w-6xl mx-auto px-6 lg:px-12 font-['Inter',sans-serif]">
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12 mb-16">
+        <div className={"grid grid-cols-2 gap-12 mb-16"}>
           <div className="col-span-2 lg:col-span-1">
             <div className="flex items-center mb-6">
             <div className="w-8 h-8 rounded-full flex items-center justify-center transition-transform duration-500 scale-110 overflow-hidden">
@@ -62,7 +64,7 @@ export const Footer = () => {
                 GreenData<span className="text-[#78EA4E]">Pro</span>
               </span>
             </div>
-            <p className="text-[#003332]/60 text-sm leading-relaxed max-w-[200px] mb-4">
+            <p className="text-[#003332]/60 text-sm leading-relaxed max-w-70% mb-4">
               O padrão Pro para operações ambientais de alta complexidade.
             </p>
             <a href="https://greentech-vision-main.vercel.app/" className="inline-flex items-center gap-1.5 text-xs font-bold text-[#78EA4E] hover:text-[#003332] transition-colors group/back">
@@ -70,7 +72,7 @@ export const Footer = () => {
               <ArrowUpRight size={14} className="group-hover/back:-translate-y-0.5 group-hover/back:translate-x-0.5 transition-transform" />
             </a>
           </div>
-          
+          {/*
           <div>
             <h4 className="font-bold text-[#003332] mb-6 text-[12px] uppercase tracking-wider">Produtos</h4>
             <ul className="space-y-4 text-[13px] text-[#003332]/60">
@@ -97,6 +99,7 @@ export const Footer = () => {
               <li><a href="#" className="hover:text-[#003332] transition-colors font-medium">Blog</a></li>
             </ul>
           </div>
+          */}
         </div>
         
         <div className="pt-12 border-t border-primary/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[12px] text-[#003332]/40">

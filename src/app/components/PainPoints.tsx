@@ -9,7 +9,7 @@ const problems = [
     icon: BrainCircuit,
     title: "Complexidade absorvida pelo sistema",
     description: "O GreenData assume a complexidade técnica da operação para que o usuário foque na execução e na decisão, sem lidar com estruturas, regras ou configurações desnecessárias.",
-    illustration: getPainPointImage('informacoes-espalhadas'),
+    illustration: getPainPointImage('complexidade-absorvida'),
     color: "#F7FAF5"
   },
   {
@@ -30,7 +30,7 @@ const problems = [
     icon: Glasses,
     title: "Rastreabilidade estrutural dos dados",
     description: "Cada dado nasce com origem, contexto e histórico definidos, garantindo confiabilidade técnica para auditorias, análises e decisões críticas.",
-    illustration: getPainPointImage('dependencia-operacional'),
+    illustration: getPainPointImage('rastreabilidade-estrutural'),
     color: "#F7FAF5"
   },
   {
@@ -179,7 +179,7 @@ export const PainPoints = () => {
   };
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden">
+    <section id="diferenciais" ref={sectionRef} className="relative overflow-hidden">
       <div className="relative max-w-[1400px] mx-auto px-4 lg:px-8">
         <motion.div 
           style={{ opacity: headerOpacity, y: headerY }}

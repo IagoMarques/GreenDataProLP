@@ -14,6 +14,8 @@ import dependenciaOperacional from './pain-points/dependencia-operacional.png';
 // import escalabilidadeLimitada from './pain-points/escalabilidade-limitada.jpg';
 import visaoOperacionalUnificada from './pain-points/visao-operacional-unificada.png';
 import escalaPorArquitetura from './pain-points/escala-por-arquitetura.png';
+import rastreabilidadeEstrutural from './pain-points/rastreabilidade-estrutural.png';
+import complexidadeAbsorvida from './pain-points/complexidade-absorvida.png';
 
 /**
  * Mapeamento das imagens dos pain points
@@ -21,6 +23,7 @@ import escalaPorArquitetura from './pain-points/escala-por-arquitetura.png';
  * Usa imagens locais quando disponíveis, caso contrário usa URLs do Unsplash como fallback.
  */
 export const painPointsImages = {
+
   'informacoes-espalhadas': informacoesEspalhadas,
   
   'processos-complexos': processosComplexos,
@@ -30,15 +33,11 @@ export const painPointsImages = {
   'visao-operacional-unificada': visaoOperacionalUnificada,
 
   'escala-por-arquitetura': escalaPorArquitetura,
+
+  'rastreabilidade-estrutural': rastreabilidadeEstrutural,
+
+  'complexidade-absorvida': complexidadeAbsorvida,
   
-  'baixa-visibilidade': 
-    'https://images.unsplash.com/photo-1567039411936-44e1b970873b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHwzZCUyMGlzb21ldHJpYyUyMGRhdGElMjBhbmFseXRpY3MlMjBjaGFydCUyMGdsYXNzfGVufDF8fHx8MTc2ODQwMzY4MHww',
-  
-  'dados-desarticulados': 
-    'https://images.unsplash.com/photo-1673280115854-279696d9e648?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHwzZCUyMG1hZ25pZnlpbmclMjBnbGFzcyUyMGRhdGElMjBncmVlbnxlbnwxfHx8fDE3Njg0MDM2ODB8MA',
-  
-  'escalabilidade-limitada': 
-    'https://images.unsplash.com/photo-1658806312303-6815563cd9d8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHwzZCUyMHNhdGVsbGl0ZSUyMGNvbm5lY3Rpb24lMjBncmVlbiUyMGdsYXNzfGVufDF8fHx8MTc2ODQwMzg1MXww',
 } as const;
 
 /**

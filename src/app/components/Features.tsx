@@ -202,7 +202,7 @@ export const Features = () => {
           />
 
           <FeatureSection
-            title="Coleta sem fronteiras."
+            title="Coleta sem fronteiras"
             description="O app de campo funciona perfeitamente offline, garantindo que nenhum dado seja perdido, onde quer que você esteja."
             image="/videos/offline.mp4"
             isVideo={true}
@@ -210,7 +210,7 @@ export const Features = () => {
           />
 
           <FeatureSection
-            title="Documentações Automatizadas."
+            title="Documentações Automatizadas"
             description="Os dados coletados alimentam automaticamente o COC e outros documentos operacionais. Nada precisa ser refeito, digitado novamente ou conferido manualmente."
             image="/videos/chain.mp4"
             isVideo={true}
