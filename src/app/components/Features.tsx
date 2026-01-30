@@ -1,21 +1,122 @@
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ImageWithFallback } from "../../app/components/figma/ImageWithFallback";
-import { getMockupsImage } from "../../assets/images/mockupsImages.js";
 import { getFeatureImage } from "@/assets/images/featuresImage.js";
 
-// Video component for card content
-const VideoCard = ({ src, alt, className }: { src: string; alt: string; className?: string }) => (
-  <video
-    src={src}
-    className={className}
-    autoPlay
-    muted
-    loop
-    playsInline
-    preload="metadata"
-    aria-label={alt}
-  />
+// Video component for card content with viewport-based playback and dissolve effect
+const VideoCard = ({ src, alt, className }: { src: string; alt: string; className?: string }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [opacity, setOpacity] = useState(1);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    let fadeTimeout: number;
+
+    const handleTimeUpdate = () => {
+      if (!video.duration) return;
+
+      // Check if video is in the last 0.5 seconds and we haven't started fading yet
+      const timeLeft = video.duration - video.currentTime;
+      if (timeLeft <= 0.5 && !fadeTimeout) {
+        // Start fade out
+        setOpacity(0);
+
+        // After fade out completes, restart video and fade back in
+        fadeTimeout = setTimeout(() => {
+          video.currentTime = 0;
+          setOpacity(1);
+          fadeTimeout = 0; // Reset timeout flag
+        }, 500); // 500ms for fade transition
+      }
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Video entered viewport, start playing
+            video.play().catch(() => {
+              // Handle autoplay policy restrictions
+            });
+          } else {
+            // Video left viewport, pause and reset opacity
+            video.pause();
+            setOpacity(1);
+            // Clear any pending fade timeout
+            if (fadeTimeout) {
+              clearTimeout(fadeTimeout);
+              fadeTimeout = 0;
+            }
+          }
+        });
+      },
+      {
+        threshold: 0.5, // 50% of video must be visible
+        rootMargin: '50px' // Start playing 50px before entering viewport
+      }
+    );
+
+    video.addEventListener('timeupdate', handleTimeUpdate);
+    observer.observe(video);
+
+    return () => {
+      video.removeEventListener('timeupdate', handleTimeUpdate);
+      observer.disconnect();
+      if (fadeTimeout) clearTimeout(fadeTimeout);
+    };
+  }, [opacity]);
+
+  return (
+    <video
+      ref={videoRef}
+      src={src}
+      className={className}
+      style={{
+        transition: 'opacity 0.5s ease-in-out',
+        opacity: opacity
+      }}
+      muted
+      loop
+      playsInline
+      preload="metadata"
+      aria-label={alt}
+    />
+  );
+};
+
+// iPad Air mockup component
+const TabletMockup = ({ image, title, isVideo }: { image: string; title: string; isVideo: boolean }) => (
+  <div className="rounded-[40px] bg-transparent">
+    <div className="relative mx-auto w-full max-w-[480px] md:max-w-[800px] aspect-[4.2/2.98] bg-[#001A1A] rounded-[1.5rem] md:rounded-[2.5rem] border-[8px] md:border-[16px] border-[#001A1A] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] overflow-hidden ring-1 ring-white/10 ring-inset">
+      {/* Screen Content */}
+      <div className="absolute inset-0 bg-white">
+        {isVideo ? (
+          <VideoCard
+            src={image}
+            alt={title}
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <ImageWithFallback
+            src={image}
+            alt={title}
+            className="w-full h-full object-cover"
+          />
+        )}
+      </div>
+
+      {/* Home indicator (iPad style) */}
+      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1.5 bg-black/20 rounded-full z-20" />
+
+      {/* Glass Reflection */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-transparent pointer-events-none z-10" />
+
+      {/* Inner Shadow for Screen depth */}
+      <div className="absolute inset-0 shadow-[inset_0_0_40px_rgba(0,0,0,0.1)] pointer-events-none z-10" />
+    </div>
+  </div>
 );
 
 interface FeatureProps {
@@ -24,6 +125,7 @@ interface FeatureProps {
   image: string;
   reverse?: boolean;
   isVideo?: boolean;
+  isTablet?: boolean;
 }
 
 const DesktopFeatureSection = ({ title, description, image, isVideo }: Omit<FeatureProps, "reverse"> & { isVideo?: boolean }) => {
@@ -83,7 +185,7 @@ const DesktopFeatureSection = ({ title, description, image, isVideo }: Omit<Feat
   );
 };
 
-const FeatureSection = ({ title, description, image, reverse, isVideo }: FeatureProps) => {
+const FeatureSection = ({ title, description, image, reverse, isVideo, isTablet }: FeatureProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -91,13 +193,12 @@ const FeatureSection = ({ title, description, image, reverse, isVideo }: Feature
   });
 
   const opacity = useTransform(scrollYProgress, [0.1, 0.4], [0, 1]);
-  const scale = useTransform(scrollYProgress, [0.1, 0.4], [0.8, 1]);
 
   return (
     <div ref={ref} className={`relative flex flex-col ${reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-12 lg:gap-24 mb-48`}>
-      <motion.div 
+      <motion.div
         style={{ opacity, x: useTransform(scrollYProgress, [0.1, 0.4], [reverse ? 50 : -50, 0]) }}
-        className="flex-1 text-center lg:text-left"
+        className={`${isTablet ? 'flex-[0.8] lg:flex-[0.7]' : 'flex-1'} text-center lg:text-left`}
       >
         <h3 className="font-['Inter',sans-serif] font-bold text-4xl md:text-5xl text-foreground mb-6 tracking-tight leading-[1.1]">
           {title}
@@ -107,41 +208,63 @@ const FeatureSection = ({ title, description, image, reverse, isVideo }: Feature
         </p>
       </motion.div>
       
-      <motion.div 
-        style={{ opacity, scale }}
-        className="flex-1 w-full"
+      <motion.div
+        style={{ opacity }}
+        className={`${isTablet ? 'flex-[1.2] lg:flex-[1.5]' : 'flex-1'} w-full`}
       >
-        <div className="rounded-[40px] bg-transparent">
-          <div className="relative mx-auto w-full max-w-[280px] md:max-w-[320px] aspect-[9/19.5] bg-[#001A1A] rounded-[3rem] border-[10px] border-[#001A1A] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] overflow-hidden ring-1 ring-white/10 ring-inset">
-            {/* Screen Content */}
-            <div className="absolute inset-0 bg-white">
-              {isVideo ? (
-                <VideoCard
-                  src={image}
-                  alt={title}
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <ImageWithFallback
-                  src={image}
-                  alt={title}
-                  className="w-full h-full object-cover"
-                />
-              )}
+        {isTablet ? (
+          <motion.div
+            initial={{ scale: 0.8 }}
+            whileInView={{ scale: 1 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
+            <TabletMockup
+              image={image}
+              title={title}
+              isVideo={isVideo || false}
+            />
+          </motion.div>
+        ) : (
+          <motion.div
+            initial={{ scale: 0.8 }}
+            whileInView={{ scale: 1 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
+            <div className="rounded-[40px] bg-transparent">
+            <div className="relative mx-auto w-full max-w-[280px] md:max-w-[320px] aspect-[9/19.5] bg-[#001A1A] rounded-[3rem] border-[10px] border-[#001A1A] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] overflow-hidden ring-1 ring-white/10 ring-inset">
+              {/* Screen Content */}
+              <div className="absolute inset-0 bg-white">
+                {isVideo ? (
+                  <VideoCard
+                    src={image}
+                    alt={title}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <ImageWithFallback
+                    src={image}
+                    alt={title}
+                    className="w-full h-full object-cover"
+                  />
+                )}
+              </div>
+
+              {/* Notch / Dynamic Island Effect */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-7 bg-[#001A1A] rounded-b-2xl z-20 flex items-center justify-center">
+                <div className="w-8 h-1 bg-white/10 rounded-full" />
+              </div>
+
+              {/* Glass Reflection */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-transparent pointer-events-none z-10" />
+
+              {/* Inner Shadow for Screen depth */}
+              <div className="absolute inset-0 shadow-[inset_0_0_40px_rgba(0,0,0,0.1)] pointer-events-none z-10" />
             </div>
-            
-            {/* Notch / Dynamic Island Effect */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-7 bg-[#001A1A] rounded-b-2xl z-20 flex items-center justify-center">
-              <div className="w-8 h-1 bg-white/10 rounded-full" />
-            </div>
-            
-            {/* Glass Reflection */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-transparent pointer-events-none z-10" />
-            
-            {/* Inner Shadow for Screen depth */}
-            <div className="absolute inset-0 shadow-[inset_0_0_40px_rgba(0,0,0,0.1)] pointer-events-none z-10" />
           </div>
-        </div>
+          </motion.div>
+        )}
       </motion.div>
     </div>
   );
@@ -197,7 +320,7 @@ export const Features = () => {
           <DesktopFeatureSection
             title="Gestão de projetos e localizações"
             description="Centralize toda a sua operação em uma interface inteligente que conecta projetos, locais e dados em tempo real."
-            image="/videos/projects-locs.mkv"
+            image="/videos/projects-locs.mp4"
             isVideo={true}
           />
 
@@ -206,6 +329,7 @@ export const Features = () => {
             description="O app de campo funciona perfeitamente offline, garantindo que nenhum dado seja perdido, onde quer que você esteja."
             image="/videos/offline.mp4"
             isVideo={true}
+            isTablet={true}
             reverse
           />
 
@@ -213,6 +337,13 @@ export const Features = () => {
             title="Documentações Automatizadas"
             description="Os dados coletados alimentam automaticamente o COC e outros documentos operacionais. Nada precisa ser refeito, digitado novamente ou conferido manualmente."
             image="/videos/chain.mp4"
+            isVideo={true}
+            isTablet={true}
+          />
+          <DesktopFeatureSection
+            title="Ambiente laboratorial integrado"
+            description="O ambiente do laboratório já vem estruturado e conectado à operação e ao cliente, permitindo analisar, registrar e devolver resultados sem etapas paralelas ou controles externos."
+            image="/videos/lab.mp4"
             isVideo={true}
           />
         </div>

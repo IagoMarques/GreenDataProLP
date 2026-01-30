@@ -16,14 +16,14 @@ const problems = [
     icon: GitCommitHorizontal,
     title: "Fluxo operacional contínuo",
     description: "Projetos, locais, coletas e dados fazem parte de um único fluxo encadeado, garantindo contexto, consistência e continuidade em toda a operação.",
-    illustration: getPainPointImage('processos-complexos'),
+    illustration: getPainPointImage('fluxo-continuo'),
     color: "#F7FAF5"
   },
   {
     icon: HandPlatter,
     title: "Autonomia sem dependência técnica",
     description: "A operação evolui dentro do sistema sem exigir suporte técnico constante para ajustes que fazem parte da rotina do negócio.",
-    illustration: getPainPointImage('dependencia-operacional'),
+    illustration: getPainPointImage('autonomia-sem-dependencia'),
     color: "#F7FAF5"
   },
   {

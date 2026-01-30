@@ -136,7 +136,7 @@ export const Hero = () => {
           style={{ opacity: textOpacity, y: textY }}
           className="max-w-4xl mx-auto w-full absolute top-[20svh] lg:top-[15svh] z-20 pointer-events-none"
         >
-          <div className="px-4">
+          <div>
             <h1 className="font-['Inter',sans-serif] font-bold text-3xl sm:text-5xl md:text-6xl lg:text-8xl text-foreground tracking-[-0.02em] leading-[1.1] mb-4 md:mb-6">
               O futuro da gestão ambiental é <span className="bg-gradient-to-r from-[#003332] to-[#78EA4E] bg-clip-text text-transparent">Pro</span>
             </h1>

@@ -16,6 +16,8 @@ import visaoOperacionalUnificada from './pain-points/visao-operacional-unificada
 import escalaPorArquitetura from './pain-points/escala-por-arquitetura.png';
 import rastreabilidadeEstrutural from './pain-points/rastreabilidade-estrutural.png';
 import complexidadeAbsorvida from './pain-points/complexidade-absorvida.png';
+import fluxoContinuo from './pain-points/fluxo-continuo.png';
+import AutonomiaSemDependencia from './pain-points/autonomia-sem-dependencia.png';
 
 /**
  * Mapeamento das imagens dos pain points
@@ -37,6 +39,10 @@ export const painPointsImages = {
   'rastreabilidade-estrutural': rastreabilidadeEstrutural,
 
   'complexidade-absorvida': complexidadeAbsorvida,
+
+  'fluxo-continuo' : fluxoContinuo,
+
+  'autonomia-sem-dependencia': AutonomiaSemDependencia,
   
 } as const;
 
